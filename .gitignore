@@ -1,0 +1,32 @@
+# Secrets and local settings
+# Keep real API keys, AWS credentials and the sa password out of git.
+.env
+.env.*
+!.env.example
+
+# Exported asset data (data/) - real customer records, never commit
+data/*.json
+
+# Python (python/)
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+
+# SQL Server tools and editors
+.vs/
+.idea/
+*.suo
+*.user
+
+# Claude Code personal settings (shared settings in .claude/settings.json stay tracked)
+.claude/settings.local.json
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini

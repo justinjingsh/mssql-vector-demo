@@ -1,0 +1,21 @@
+# SQL Server 2025 Developer edition for the demo scripts, on localhost:1433.
+# Start with `docker compose up -d`; `docker compose down -v` also deletes the data.
+services:
+  sql:
+    image: mcr.microsoft.com/mssql/server:2025-latest
+    container_name: mssql-vector-demo
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "${MSSQL_SA_PASSWORD:-Demo_Passw0rd!}"
+      MSSQL_PID: "Developer"
+    ports:
+      - "1433:1433"
+    volumes:
+      - mssql-data:/var/opt/mssql
+      # Scripts and data, read-only, at the same paths inside the container
+      - ./01-getting-started:/demo/01-getting-started:ro
+      - ./02-asset-register/sql:/demo/02-asset-register:ro
+      - ./data:/demo/data:ro
+
+volumes:
+  mssql-data:
